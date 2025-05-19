@@ -1,8 +1,9 @@
 import {createBrowserRouter} from "react-router-dom";
-import Login from "../pages/auth/Login.tsx";
-import Signup from "../pages/auth/Signup.tsx";
+import LoginPage from "../pages/auth/LoginPage.tsx";
+import SignupPage from "../pages/auth/SignupPage.tsx";
 import NotFound from "../pages/NotFound.tsx";
 import AuthLayout from "../layouts/AuthLayout.tsx";
+import LandingPage from "../pages/auth/LandingPage.tsx";
 
 const router = createBrowserRouter([
     {
@@ -13,12 +14,16 @@ const router = createBrowserRouter([
                 element: <AuthLayout/>,
                 children: [
                     {
+                        path:'',
+                        element: <LandingPage />
+                    },
+                    {
                         path:'login',
-                        element: <Login/>
+                        element: <LoginPage />
                     },
                     {
                         path:'signup',
-                        element: <Signup/>
+                        element: <SignupPage />
                     },
                 ]
             }
