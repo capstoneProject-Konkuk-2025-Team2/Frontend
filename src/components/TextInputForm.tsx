@@ -6,7 +6,6 @@ type TextInputFormProps = {
 }
 
 const TextInputForm = ({label, placeholder, isError, isPW}: TextInputFormProps) => {
-
     return (
         <form>
             {label}

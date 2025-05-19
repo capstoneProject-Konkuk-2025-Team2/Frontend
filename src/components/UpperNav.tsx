@@ -1,13 +1,16 @@
-
+import {useNavigate} from "react-router-dom";
 type UpperNavProps = {
     text: string;
     otherBtn: string;
 }
 
 const UpperNav = ({text, otherBtn}:UpperNavProps) =>{
+    const navigate = useNavigate()
     return (
-        <div style={{"display":"flex","justifyContent":"space-between","alignItems":"center"}}>
-            <div>
+        <div className="w-[390px] flex flex-row justify-between items-center">
+            <div onClick={()=>{
+                navigate(-1)
+            }}>
                 <img src={"/icons/arrow-left.svg"} alt="arrow-left"/>
             </div>
             <div>
