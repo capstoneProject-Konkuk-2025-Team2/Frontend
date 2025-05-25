@@ -17,12 +17,12 @@ const LandingPage = () => {
                 <button className="w-[150px] 
                 h-[44px] rounded-[10px] ml-[39px] mr-[6px]
                 bg-[#43BB6B] text-[#FCFFFF] text-center font-pretendard text-sm font-bold leading-7" onClick={()=>{
-                    navigate('/login')  
+                    navigate('/auth/login')
                 }}>로그인</button>
                 <button  className="w-[150px] 
                 h-[44px] rounded-[10px] mr-[39px] ml-[6px]
                 bg-[#43BB6B] text-[#FCFFFF] text-center font-pretendard text-sm font-bold leading-7" onClick={()=>{
-                    navigate('/signup')
+                    navigate('/auth/signup')
                 }}>회원가입</button>
             </div>
             <div className="w-[390px] flex justify-center mt-4">
