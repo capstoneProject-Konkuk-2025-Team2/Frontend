@@ -1,9 +1,6 @@
 
-
-
 const TimeTableGrid = () => {
 
-    const row_count = 24;
     const col_count = 7;
     const time_label = [
         "0900", "0930", "1000", "1030", "1100", "1130",
@@ -15,8 +12,20 @@ const TimeTableGrid = () => {
 
     return (
         <div>
-            <div className="grid-cols-[repeat(16, minmax(100px,100px)]">
-                1
+            <div className="grid gap-1">
+                {
+                    time_label.map((halfHour, rowIndex) => (
+                        Array.from({ length: col_count }).map((_, colIndex) => {
+                            return (
+                                <div>
+                                    {halfHour}
+                                    {rowIndex}
+                                    {colIndex}
+                                </div>
+                            )
+                        })
+                    ))
+                }
             </div>
         </div>
     )

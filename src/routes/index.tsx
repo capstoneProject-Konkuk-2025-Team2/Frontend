@@ -1,4 +1,4 @@
-import {createBrowserRouter, Navigate} from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import LoginPage from "../pages/auth/LoginPage.tsx";
 import SignupPage from "../pages/auth/SignupPage.tsx";
 import NotFound from "../pages/NotFound.tsx";
@@ -12,32 +12,32 @@ const router = createBrowserRouter([
         path: '/',
         // element: <Navigate to="/auth" replace />,
         errorElement: <NotFound />,
-        children:[
+        children: [
             {
-                path:'auth',
-                element: <AuthLayout/>,
+                path: 'auth',
+                element: <AuthLayout />,
                 children: [
                     {
-                        path:'',
+                        path: '',
                         // index: true,
                         element: <LandingPage />
                     },
                     {
-                        path:'login',
+                        path: 'login',
                         element: <LoginPage />
                     },
                     {
-                        path:'signup',
+                        path: 'signup',
                         element: <SignupPage />
                     },
                 ]
             },
             {
-                path:'main',
-                element: <MainLayout/>,
-                children:[
+                path: 'main',
+                element: <MainLayout />,
+                children: [
                     {
-                        path:'timetable',
+                        path: 'timetable',
                         element: <TimeTablePage />
                     }
                 ]
