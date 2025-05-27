@@ -1,4 +1,4 @@
-import { createBrowserRouter, Navigate } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import LoginPage from "../pages/auth/LoginPage.tsx";
 import SignupPage from "../pages/auth/SignupPage.tsx";
 import NotFound from "../pages/NotFound.tsx";
@@ -6,6 +6,9 @@ import AuthLayout from "../layouts/AuthLayout.tsx";
 import LandingPage from "../pages/auth/LandingPage.tsx";
 import MainLayout from "../layouts/MainLayout.tsx";
 import TimeTablePage from "../pages/timetable/TimeTablePage.tsx";
+import CalenderPage from "../pages/calender/CalenderPage.tsx";
+import ReviewPage from "../pages/review/ReviewPage.tsx";
+import MyPage from "../pages/mypage/MyPage.tsx";
 
 const router = createBrowserRouter([
     {
@@ -37,9 +40,22 @@ const router = createBrowserRouter([
                 element: <MainLayout />,
                 children: [
                     {
+                        path: 'calender',
+                        element: <CalenderPage />
+                    },
+                    {
+                        path: 'review',
+                        element: <ReviewPage />
+                    },
+                    {
                         path: 'timetable',
                         element: <TimeTablePage />
+                    },
+                    {
+                        path: 'mypage',
+                        element: <MyPage />
                     }
+
                 ]
             }
         ]
