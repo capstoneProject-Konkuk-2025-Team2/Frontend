@@ -3,12 +3,10 @@ import { useChatBotPageStore } from "../store/store"
 const ChatBotFrame = () => {
     const { openChatBotPage } = useChatBotPageStore();
 
-
-
     return (
         <div>
             <div className="absolute bottom-0 w-97 h-194 
-                    p-7 flex flex-col justify-around items-center 
+                    p-7 flex flex-col justify-between items-center
                     gap-2.5 z-20 bg-[#DDE9F6]">
 
                 <div className="absolute top-5 right-5"
@@ -23,15 +21,16 @@ const ChatBotFrame = () => {
 
 
                 <div>
-                    <div className="w-93 h-44 bg-[#FCFFFF] rounded-tr-[50px] rounded-br-[50px]">
+                    <div className="w-93 h-44 bg-[#FCFFFF] rounded-tr-[50px] rounded-br-[50px] p-3">
                         <div>
                             챗봇답변
                         </div>
                     </div>
                 </div>
 
+
                 <div>
-                    <div className="w-93 h-16 bg-[#FCFFFF] rounded-tl-[50px] rounded-bl-[50px]">
+                    <div className="w-93 h-16 bg-[#FCFFFF] rounded-tl-[50px] rounded-bl-[50px] p-3">
                         <div>
                             챗봇 예시 질문
                         </div>
@@ -39,7 +38,7 @@ const ChatBotFrame = () => {
                 </div>
 
                 <div>
-                    <div className="flex flex-row justify-between w-92 h-11 bg-[#0076FE] rounded-[500px] m-4">
+                    <div className="flex flex-row justify-between w-92 h-11 bg-[#0076FE] text-[#FCFFFF] rounded-[500px] m-4 pl-4">
                         <input placeholder="챗봇 예시 입력" />
 
                         <div className="w-10 h-10 bg-[#FCFFFF] rounded-[500px] shadow-[0px_1px_3px_0px_rgba(0,0,0,0.30)] shadow-[0px_4px_8px_3px_rgba(0,0,0,0.15)] inline-flex justify-center items-center overflow-hidden m-1">

@@ -1,0 +1,1 @@
+const API_URL = "/v1/member/"

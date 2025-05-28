@@ -5,7 +5,7 @@ import SetPassword from "./SetPassword.tsx";
 import { useState } from "react";
 
 const SignupPage = () =>{
-    const [isVerifyed, setIsVerifyed] = useState(true);
+    const [isVerifyed, setIsVerifyed] = useState(false);
     const verifyByMail = () =>{
         setIsVerifyed(true)
         // if(true){
