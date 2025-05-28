@@ -1,4 +1,4 @@
-import {createBrowserRouter, Navigate} from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import LoginPage from "../pages/auth/LoginPage.tsx";
 import SignupPage from "../pages/auth/SignupPage.tsx";
 import NotFound from "../pages/NotFound.tsx";
@@ -6,40 +6,56 @@ import AuthLayout from "../layouts/AuthLayout.tsx";
 import LandingPage from "../pages/auth/LandingPage.tsx";
 import MainLayout from "../layouts/MainLayout.tsx";
 import TimeTablePage from "../pages/timetable/TimeTablePage.tsx";
+import CalenderPage from "../pages/calender/CalenderPage.tsx";
+import ReviewPage from "../pages/review/ReviewPage.tsx";
+import MyPage from "../pages/mypage/MyPage.tsx";
 
 const router = createBrowserRouter([
     {
         path: '/',
         // element: <Navigate to="/auth" replace />,
         errorElement: <NotFound />,
-        children:[
+        children: [
             {
-                path:'auth',
-                element: <AuthLayout/>,
+                path: 'auth',
+                element: <AuthLayout />,
                 children: [
                     {
-                        path:'',
+                        path: '',
                         // index: true,
                         element: <LandingPage />
                     },
                     {
-                        path:'login',
+                        path: 'login',
                         element: <LoginPage />
                     },
                     {
-                        path:'signup',
+                        path: 'signup',
                         element: <SignupPage />
                     },
                 ]
             },
             {
-                path:'main',
-                element: <MainLayout/>,
-                children:[
+                path: 'main',
+                element: <MainLayout />,
+                children: [
                     {
-                        path:'timetable',
+                        path: 'calender',
+                        element: <CalenderPage />
+                    },
+                    {
+                        path: 'review',
+                        element: <ReviewPage />
+                    },
+                    {
+                        path: 'timetable',
                         element: <TimeTablePage />
+                    },
+                    {
+                        path: 'mypage',
+                        element: <MyPage />
                     }
+
                 ]
             }
         ]

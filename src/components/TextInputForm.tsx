@@ -19,7 +19,8 @@ const TextInputForm = ({label, placeholder, isError, isPW}: TextInputFormProps) 
                     
                     <span className="flex flex-row text-black text-sm font-medium font-['Pretendard'] leading-7">
                         <input className="w-full text-black text-sm font-medium font-['Pretendard'] leading-7" placeholder={placeholder}/>
-                        @konkuk.ac.kr
+                        {/* @konkuk.ac.kr */}
+                        {/* {placeholder} */}
                     </span>
                     
                 </div>

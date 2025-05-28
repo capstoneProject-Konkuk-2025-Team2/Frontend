@@ -1,22 +1,19 @@
 import UpperNav from "../../components/UpperNav.tsx";
+import TimeTableLabel from "./TimeTableLabel.tsx";
+import TimeTableGrid from "./TimeTableGrid.tsx";
 
-const TimeTablePage = () =>{
+const TimeTablePage = () => {
+    // const [isAdding, setIsAdding] = useState(true);
     return (
         <div>
-            <UpperNav text="2025년 1학기" otherBtn="None"/>
-
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-                <div className="container-fluid">시간표 요일별 라벨</div>
-                <div className="container-fluid">시간표</div>
-            </nav>
-
-            <div>
-                fixed : 플로팅 시간표 편집 버튼
+            <UpperNav text="2025년 1학기" otherBtn="None" />
+            <TimeTableLabel />
+            <div className="h-170 overflow-y-scroll no-scrollbar">
+                <TimeTableGrid />
             </div>
-
-            <div>
-                fixed : 플로팅 챗봇 버튼
-            </div>
+            {/* {isAdding ? (<div>
+                시간표 추가 ui
+            </div>) : null} */}
         </div>
     )
 }
