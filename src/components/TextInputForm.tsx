@@ -14,16 +14,11 @@ const TextInputForm = ({label, placeholder, isError, isPW}: TextInputFormProps) 
             {/* 비밀번호 입력 구분 */}
             {!isPW ?
                 (
-                // <input placeholder={placeholder}/>
-                <div className="w-44 h-6 text-center justify-start">
-                    
-                    <span className="flex flex-row text-black text-sm font-medium font-['Pretendard'] leading-7">
+                // <div className="w-44 h-6 text-center justify-start">
+                //     <span className="flex flex-row text-black text-sm font-medium font-['Pretendard'] leading-7">
                         <input className="w-full text-black text-sm font-medium font-['Pretendard'] leading-7" placeholder={placeholder}/>
-                        {/* @konkuk.ac.kr */}
-                        {/* {placeholder} */}
-                    </span>
-                    
-                </div>
+                    // </span>
+                // </div>
                 )
                 :
                 <input className="text-black text-sm font-medium font-['Pretendard'] leading-7" placeholder={placeholder}/>
