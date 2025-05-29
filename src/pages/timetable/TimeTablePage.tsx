@@ -1,19 +1,19 @@
 import UpperNav from "../../components/UpperNav.tsx";
 import TimeTableLabel from "./TimeTableLabel.tsx";
 import TimeTableGrid from "./TimeTableGrid.tsx";
+import { useAddTimeTableStore } from "../../store/store.ts";
 
 const TimeTablePage = () => {
-    // const [isAdding, setIsAdding] = useState(true);
+    const { setIsEditing } = useAddTimeTableStore();
     return (
         <div>
-            <UpperNav text="2025년 1학기" otherBtn="None" />
-            <TimeTableLabel />
-            <div className="h-170 overflow-y-scroll no-scrollbar">
-                <TimeTableGrid />
+            <UpperNav text="2025년 1학기" otherBtn="edit-timetable" handleBtn={setIsEditing} />
+            <div className="bg-[#005B3F]">
+                <TimeTableLabel />
+                <div className="h-170 overflow-y-scroll no-scrollbar p-4">
+                    <TimeTableGrid />
+                </div>
             </div>
-            {/* {isAdding ? (<div>
-                시간표 추가 ui
-            </div>) : null} */}
         </div>
     )
 }

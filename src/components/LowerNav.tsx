@@ -30,8 +30,8 @@ const LowerNav = () => {
     }, [location.pathname]);
 
     return (
-        <div className="w-97 h-16 flex flex-row justify-around items-center bg-[#f4f4f4
-        shadow-[0px_0.20000000298023224px_2px_0px_rgba(0,0,0,0.25)] gap-11">
+        <div className="w-97 h-16 flex flex-row justify-between items-center bg-[#f4f4f4
+        shadow-[0px_0.20000000298023224px_2px_0px_rgba(0,0,0,0.25)] pl-14 pr-14">
 
             <LowerNavIcon
                 imageOnSrc="/icons/calender-icon-on.svg" imageOffSrc="/icons/calender-icon-off.svg"

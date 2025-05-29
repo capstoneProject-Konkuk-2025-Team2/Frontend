@@ -1,4 +1,9 @@
 export interface ChatBotPageState {
-    isChatBotOpen : boolean;
+    isChatBotOpen: boolean;
     openChatBotPage: () => void;
+}
+
+export interface AddTimeTableState {
+    isEditing: boolean;
+    setIsEditing: () => void;
 }
