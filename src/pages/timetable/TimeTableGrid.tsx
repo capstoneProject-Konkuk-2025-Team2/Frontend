@@ -10,8 +10,11 @@
 //     }
 // ] 
 
-const TimeTableGrid = () => {
+import { useAddTimeTableStore, useSelectCellStore } from "../../store/store";
 
+const TimeTableGrid = () => {
+    const { isEditing } = useAddTimeTableStore();
+    const { selectedCell, setSelectedCell } = useSelectCellStore();
     const time_label = [
         "0900", "0930", "1000", "1030", "1100", "1130",
         "1200", "1230", "1300", "1330", "1400", "1430",
@@ -22,23 +25,64 @@ const TimeTableGrid = () => {
 
     const day_label = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
 
+    const checkIsSelect = (halfHour: string, day: string) => {
+        return selectedCell.some(
+            (c) => c.timeInfo === halfHour
+                && c.dayInfo === day
+        )
+    }
+
+    const handleClick = (halfHour: string, day: string) => {
+        if (isEditing) {
+            console.log(`선택된 셀 : ${halfHour}/${day}`)
+            const cell = {
+                timeInfo: halfHour,
+                dayInfo: day
+            }
+
+            // const exist = selectedCell.some(
+            //     (c) => c.timeInfo === cell.timeInfo
+            //         && c.dayInfo === cell.dayInfo
+            // );
+
+            // 
+            if (checkIsSelect(halfHour, day)) {
+                const removedCell = selectedCell.filter(
+                    (c) => !(c.timeInfo === cell.timeInfo
+                        && c.dayInfo === cell.dayInfo)
+                )
+                setSelectedCell(removedCell)
+            }
+            else {
+                setSelectedCell([...selectedCell, cell])
+            }
+        }
+        else {
+            return
+        }
+    }
+
     return (
         <div>
             <div className="grid grid-cols-7 rounded-[4px] overflow-hidden">
                 {
-                    time_label.map((halfHour, rowIndex) => (
-                        day_label.map((day, colIndex) => {
+                    time_label.map((halfHour) => (
+                        day_label.map((day) => {
+                            const isSelc = checkIsSelect(halfHour, day);
                             return (
-                                <div className="w-13 h-19 border-solid border-[#D7D7D9] border-1 bg-[#f5f5f5]">
-                                    <p>{halfHour}</p>
-                                    <p>{day}</p>
+                                <div className="w-13 h-19 border-solid border-[#D7D7D9] border-1 bg-[#f5f5f5]"
+                                    onClick={() => handleClick(halfHour, day)}>
+                                    <div className="{{isSelc ? bg-[#f12345] : bg-[#f5f5f5]}}">
+                                        <p>{halfHour}</p>
+                                        <p>{day}</p>
+                                    </div>
                                 </div>
                             )
                         })
                     ))
                 }
             </div>
-        </div>
+        </div >
     )
 }
 

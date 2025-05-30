@@ -10,7 +10,7 @@ const TimeTablePage = () => {
             <UpperNav text="2025년 1학기" otherBtn="edit-timetable" handleBtn={setIsEditing} />
             <div className="bg-[#005B3F]">
                 <TimeTableLabel />
-                <div className="h-170 overflow-y-scroll no-scrollbar p-4">
+                <div className="h-165 overflow-y-scroll no-scrollbar p-4">
                     <TimeTableGrid />
                 </div>
             </div>

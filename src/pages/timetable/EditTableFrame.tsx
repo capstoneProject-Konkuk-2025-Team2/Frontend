@@ -3,17 +3,32 @@
 // 스타벅스2 = #005B3F
 // 좀덜흰색 = #FCFFFF
 
+import { useSelectCellStore } from "../../store/store";
+
 const EditTableFrame = () => {
+    const { selectedCell, setSelectedCell } = useSelectCellStore();
+
+    const resetSelected = () => {
+        setSelectedCell([])
+    }
 
     return (
         <div className="flex flex-col justify-between items-center w-[390px] h-96 bottom-0 absolute bg-white rounded-tl-2xl rounded-tr-2xl shadow-[0px_-0.05000000074505806px_1px_0px_rgba(0,0,0,0.25)] overflow-hidden">
 
             <div className="flex flex-row justify-between">
                 <div>
-                    dnjfdydlfaeaefaefae213
+                    {selectedCell.map((sCell) => {
+                        return (
+                            <div>
+                                {sCell.dayInfo}
+                                {sCell.timeInfo}
+                            </div>
+                        )
+                    })}
                 </div>
 
-                <div className="flex justify-center items-center w-20 h-7 bg-[#08AC64] rounded-2xl text-white text-xs font-normal font-[Pretendard]">
+                <div className="flex justify-center items-center w-20 h-7 bg-[#08AC64] rounded-2xl text-white text-xs font-normal font-[Pretendard]"
+                    onClick={resetSelected}>
                     선택취소
                 </div>
             </div>
