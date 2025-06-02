@@ -21,7 +21,7 @@ const router = createBrowserRouter([
         element: <AuthLayout />,
         children: [
             {
-                // path: '',
+                path: '',
                 // index: true,
                 element: <LandingPage />
             },
