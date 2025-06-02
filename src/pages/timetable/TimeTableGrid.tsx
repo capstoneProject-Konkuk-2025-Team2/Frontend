@@ -68,7 +68,6 @@ const TimeTableGrid = () => {
                 {
                     time_label.map((halfHour) => (
                         day_label.map((day) => {
-                            const isSelc = checkIsSelect(halfHour, day);
                             return (
                                 <div className="w-13 h-19 border-solid border-[#D7D7D9] border-1 bg-[#f5f5f5]"
                                     onClick={() => handleClick(halfHour, day)}>
