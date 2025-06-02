@@ -4,14 +4,17 @@ import {useNavigate} from "react-router-dom";
 const LandingPage = () => {
     const [guidePage, setGuidePage] = useState(0)
     const navigate = useNavigate();
+    const nextGuide = (index:number) => {
+        setGuidePage(index);
+    }
     return (
         <div className="flex flex-col justify-center items-center">
             <div className="w-[390px] h-[648px] bg-[#08AC64]">guide이미지 {guidePage}</div>
             <div className="w-[66px] h-[48px] flex justify-center gap-1.5 mt-5">
-                <div className="w-[12px] h-[12px] rounded-full bg-[#005B3F]"></div>
-                <div className="w-[12px] h-[12px] rounded-full bg-[#D9D9D9]"></div>
-                <div className="w-[12px] h-[12px] rounded-full bg-[#D9D9D9]"></div>
-                <div className="w-[12px] h-[12px] rounded-full bg-[#D9D9D9]"></div>
+                <div className="w-[12px] h-[12px] rounded-full bg-[#005B3F]" onClick={()=>nextGuide(0)}></div>
+                <div className="w-[12px] h-[12px] rounded-full bg-[#D9D9D9]" onClick={()=>nextGuide(1)}></div>
+                <div className="w-[12px] h-[12px] rounded-full bg-[#D9D9D9]" onClick={()=>nextGuide(2)}></div>
+                <div className="w-[12px] h-[12px] rounded-full bg-[#D9D9D9]" onClick={()=>nextGuide(3)}></div>
             </div>
             <div>
                 <button className="w-[150px] 
