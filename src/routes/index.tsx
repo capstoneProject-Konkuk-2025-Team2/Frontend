@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import LoginPage from "../pages/auth/LoginPage.tsx";
 import SignupPage from "../pages/auth/SignupPage.tsx";
 import NotFound from "../pages/NotFound.tsx";
@@ -13,53 +13,53 @@ import MyPage from "../pages/mypage/MyPage.tsx";
 const router = createBrowserRouter([
     {
         path: '/',
-        // element: <Navigate to="/auth" replace />,
+        element: <Navigate to="/auth" replace />,
         errorElement: <NotFound />,
+    },
+    {
+        path: '/auth',
+        element: <AuthLayout />,
         children: [
             {
-                path: 'auth',
-                element: <AuthLayout />,
-                children: [
-                    {
-                        path: '',
-                        // index: true,
-                        element: <LandingPage />
-                    },
-                    {
-                        path: 'login',
-                        element: <LoginPage />
-                    },
-                    {
-                        path: 'signup',
-                        element: <SignupPage />
-                    },
-                ]
+                // path: '',
+                // index: true,
+                element: <LandingPage />
             },
             {
-                path: 'main',
-                element: <MainLayout />,
-                children: [
-                    {
-                        path: 'calender',
-                        element: <CalenderPage />
-                    },
-                    {
-                        path: 'review',
-                        element: <ReviewPage />
-                    },
-                    {
-                        path: 'timetable',
-                        element: <TimeTablePage />
-                    },
-                    {
-                        path: 'mypage',
-                        element: <MyPage />
-                    }
-
-                ]
+                path: 'login',
+                element: <LoginPage />
+            },
+            {
+                path: 'signup',
+                element: <SignupPage />
+            },
+        ]
+    },
+    {
+        path: 'main',
+        element: <MainLayout />,
+        children: [
+            {
+                path: 'calender',
+                element: <CalenderPage />
+            },
+            {
+                path: 'review',
+                element: <ReviewPage />
+            },
+            {
+                path: 'timetable',
+                element: <TimeTablePage />
+            },
+            {
+                path: 'mypage',
+                element: <MyPage />
             }
+
         ]
     }
+
+
 ])
 
 export default router
