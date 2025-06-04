@@ -13,10 +13,14 @@ const EditTableFrame = () => {
     }
 
     return (
-        <div className="flex flex-col justify-between items-center w-[390px] h-96 bottom-0 absolute bg-white rounded-tl-2xl rounded-tr-2xl shadow-[0px_-0.05000000074505806px_1px_0px_rgba(0,0,0,0.25)] overflow-hidden">
+        <div className="flex flex-col justify-between w-[390px] h-96 bottom-0 absolute 
+        bg-white rounded-tl-2xl rounded-tr-2xl 
+        shadow-[0px_-0.05000000074505806px_1px_0px_rgba(0,0,0,0.25)] 
+        overflow-hidden z-10">
 
             <div className="flex flex-row justify-between">
-                <div>
+                <div className="relative top-7 left-6 box-content justify-center
+                w-56 text-black text-sm font-semibold font-['Roboto'] leading-none tracking-wide">
                     {selectedCell.map((sCell) => {
                         return (
                             <div>
@@ -27,15 +31,56 @@ const EditTableFrame = () => {
                     })}
                 </div>
 
-                <div className="flex justify-center items-center w-20 h-7 bg-[#08AC64] rounded-2xl text-white text-xs font-normal font-[Pretendard]"
+                <div className="flex justify-center items-center relative top-7 right-7
+                w-20 h-7 bg-[#08AC64] rounded-2xl
+                 text-white text-xs font-normal font-[Pretendard]"
                     onClick={resetSelected}>
                     선택취소
                 </div>
             </div>
 
+            <div className="flex flex-row justify-around">
+                <div className="flex flex-col">
+                    <div className="w-32 h-6 text-left justify-start text-black text-xs font-light font-['Pretendard'] leading-7">활동명</div>
+                    <input className="w-32 text-black text-sm font-medium font-['Pretendard'] leading-7" placeholder="예: 컴퓨터네트워크2" />
+                    <div className="w-36 h-0 outline-1 outline-offset-[-0.50px] outline-emerald-600"></div>
+                </div>
 
-            <div className="w-94 h-64 bg-[#005B3F] rounded-tl-2xl rounded-tr-2xl ml-3 mr-3"></div>
-        </div>
+                <div className="flex flex-col">
+                    <div className="w-32 h-6 text-left justify-start text-black text-xs font-light font-['Pretendard'] leading-7">활동 설명</div>
+                    <input className="w-32 text-black text-sm font-medium font-['Pretendard'] leading-7" placeholder="예: 공C487" />
+                    <div className="w-36 h-0 outline-1 outline-offset-[-0.50px] outline-emerald-600"></div>
+                </div>
+
+                <div className="flex flex-col justify-center">
+                    <img src="/icons/plus-icon.svg" />
+                </div>
+            </div>
+
+
+            <div className="flex flex-col justify-start items-center w-94 h-64 bg-[#005B3F] rounded-tl-2xl rounded-tr-2xl ml-3 mr-3">
+                <div className="flex flex-row justify-between w-80 h-14 bg-[#FCFFFF] rounded-2xl shadow-[0px_1px_1px_0px_rgba(24,53,47,1.00)] mt-5">
+                    <div className="rounded-full bg-[#FCFFFF]">
+                        <img src="/icons/color-fill-icon.svg" />
+                    </div>
+                    <div className="flex flex-col">
+                        <div>
+                            컴네2
+                        </div>
+                        <div>
+                            공삐사치로
+                        </div>
+                    </div>
+
+                    <div>
+                        <img src="/icons/check-icon.svg" />
+                    </div>
+                    <div>
+                        <img src="/icons/trashcan-icon.svg" />
+                    </div>
+                </div>
+            </div>
+        </div >
     )
 }
 

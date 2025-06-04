@@ -38,3 +38,13 @@ export interface timeCell {
     // 하이브리드로, 먼저 isSequence로 
     tail: string;
 }
+
+export interface Event {
+    id: string; // 각 일정을 구분할 고유 ID (uuid, nanoid 등 사용)
+    day: 'MON' | 'TUE' | 'WED' | 'THU' | 'FRI' | 'SAT' | 'SUN'; // 요일
+    startTime: string; // "0900"
+    endTime: string; // "1100" (30분 단위가 아닌, 끝나는 시간)
+    eventName: string;
+    eventDetail: string;
+    color: string; // #B2CCFF 등
+}
