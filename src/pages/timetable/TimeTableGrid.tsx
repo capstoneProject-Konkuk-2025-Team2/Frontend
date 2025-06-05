@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAddTimeTableStore, useSelectCellStore, useLoadTableStore } from "../../store/store";
-import type { Event } from "../../types/types";
+import type { dayString, Event } from "../../types/types";
 
 // --- 헬퍼 상수 및 함수 ---
 const TIME_SLOTS = Array.from({ length: 31 }, (_, i) => { // 09:00 ~ 22:30 까지 30분 단위 슬롯
@@ -11,14 +11,13 @@ const TIME_SLOTS = Array.from({ length: 31 }, (_, i) => { // 09:00 ~ 22:30 까�
 const DAY_TO_COL = { MON: 1, TUE: 2, WED: 3, THU: 4, FRI: 5, SAT: 6, SUN: 7 };
 
 
-/**
- * 🌟 이벤트 시간 <-> Grid Row 변환 로직 검토 및 확정
+/*
+ * 이벤트 시간 <-> Grid Row 변환 로직 검토 및 확정
  * CSS Grid 라인은 1부터 시작합니다.
  * 09:00는 1번 라인에서 시작, 09:30은 2번 라인에서 시작...
  * endTime은 해당 시간의 시작 라인을 가리킵니다. 
  * 예: 09:00 ~ 10:30 이벤트는 1번 라인에서 시작하여 4번 라인(10:30 시작) 직전까지 차지합니다. (grid-row: 1 / 4)
  */
-
 //1400
 const timeToGridRow = (time: string) => {
     const hour = parseInt(time.substring(0, 2)); //14
@@ -35,26 +34,28 @@ const TimeTableGrid = () => {
     const { isEditing } = useAddTimeTableStore();
     const { selectedCell, setSelectedCell } = useSelectCellStore();
     const { loadTable } = useLoadTableStore();
-    const checkIsSelect = (halfHour: string, day: string) => {
-        return selectedCell.some(
-            (c) => c.timeInfo === halfHour
-                && c.dayInfo === day
-        )
-    }
 
-    const handleVoidClick = (time: string, day: string) => {
+    const checkIsSelect = (halfHour: string, day: dayString) => {
+        return selectedCell.some(
+            (c) => c.startTime === halfHour
+                && c.day === day
+        )
+    };
+
+    const handleVoidClick = (startTime: string, endTime: string, day: dayString) => {
         if (isEditing) {
-            console.log(`선택된 셀 : ${time}/${day}`)
+            console.log(`선택된 셀 : ${startTime}/${day}`)
 
             const cell = {
-                timeInfo: time,
-                dayInfo: day
+                startTime: startTime,
+                endTime: endTime,
+                day: day
             }
 
-            if (checkIsSelect(time, day)) {
+            if (checkIsSelect(startTime, day)) {
                 const removedCell = selectedCell.filter(
-                    (c) => !(c.timeInfo === cell.timeInfo
-                        && c.dayInfo === cell.dayInfo)
+                    (c) => !(c.startTime === cell.startTime
+                        && c.day === cell.day)
                 )
                 setSelectedCell(removedCell)
             }
@@ -75,14 +76,15 @@ const TimeTableGrid = () => {
             console.log(`선택된 셀 : ${event.startTime}/${event.day}`)
 
             const cell = {
-                timeInfo: event.startTime,
-                dayInfo: event.day
+                startTime: event.startTime,
+                endTime: event.endTime,
+                day: event.day
             }
 
             if (checkIsSelect(event.startTime, event.day)) {
                 const removedCell = selectedCell.filter(
-                    (c) => !(c.timeInfo === cell.timeInfo
-                        && c.dayInfo === cell.dayInfo)
+                    (c) => !(c.startTime === cell.startTime
+                        && c.day === cell.day)
                 )
                 setSelectedCell(removedCell)
             }
@@ -108,16 +110,18 @@ const TimeTableGrid = () => {
                 backgroundColor: '#D7D7D9', // 간격 색상
             }}
         >
+            {/* #D9D9D9 */}
             {/* --- 1. 배경 그리드 셀 렌더링 --- */}
             {TIME_SLOTS.map((time, rowIndex) =>
                 Object.keys(DAY_TO_COL).map((day, colIndex) => (
                     <div
                         key={`${time}-${day}`}
-                        className="bg-[#f5f5f5]" // 각 셀의 기본 배경색
                         onClick={() => {
-                            handleVoidClick(time, day);
+                            console.log(day)
+                            handleVoidClick(time, time, day as dayString);
                         }}
                         style={{
+                            backgroundColor: '#f5f5f5',
                             gridRow: rowIndex + 1,
                             gridColumn: colIndex + 1,
                         }}

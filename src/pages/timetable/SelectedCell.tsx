@@ -8,10 +8,12 @@ const SelectedCell = ({ selectedCell, setSelectedCell }: SelectedCellState) => {
             <div className="relative top-7 left-6 box-content justify-center
                 w-56 text-black text-sm font-semibold font-['Roboto'] leading-none tracking-wide">
                 {selectedCell.map((sCell) => {
+                    console.log(sCell.day)
                     return (
                         <div>
-                            {sCell.dayInfo}
-                            {sCell.timeInfo}
+                            {sCell.day}
+                            {sCell.startTime}
+                            {sCell.endTime}
                         </div>
                     )
                 })}

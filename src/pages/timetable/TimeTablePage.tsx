@@ -11,7 +11,6 @@ const TimeTablePage = () => {
             <div className="bg-[#005B3F]">
                 <TimeTableLabel />
                 <div className="h-165 overflow-y-scroll no-scrollbar p-4 box-border">
-                    {/* <div className="h-165 overflow-y-scroll no-scrollbar box-border"> */}
                     <TimeTableGrid />
                 </div>
             </div>

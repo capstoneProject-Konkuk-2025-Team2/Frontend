@@ -1,4 +1,7 @@
 
+export type dayString = 'MON' | 'TUE' | 'WED' | 'THU' | 'FRI' | 'SAT' | 'SUN';
+
+
 // 챗봇 페이지 on/off 상태
 export interface ChatBotPageState {
     isChatBotOpen: boolean;
@@ -11,10 +14,25 @@ export interface AddTimeTableState {
     setIsEditing: () => void;
 }
 
+// 셀 클릭 시 전달할 정보를 담는 type - Event 기반으로 수정 필요.
+export interface selectedTime {
+    // day: 'MON' | 'TUE' | 'WED' | 'THU' | 'FRI' | 'SAT' | 'SUN';
+    day: dayString;
+    startTime: string;
+    endTime: string;
+}
+
 // 시간표에서 클릭한 셀들 정보를 모으는 상태
 export interface SelectedCellState {
     selectedCell: selectedTime[];
     setSelectedCell: (newCell: selectedTime[]) => void;
+}
+
+export interface addTimeRequest {
+    selectedCell: selectedTime[];
+    eventName: string;
+    eventDetail: string;
+    color: string;
 }
 
 // 서버에서 가져온 시간표 정보를 저장하는 상태
@@ -35,11 +53,6 @@ export interface PresetState {
     setPresets: (newPresets: Preset[]) => void;
 }
 
-// 셀 클릭 시 전달할 정보를 담는 type - Event 기반으로 수정 필요.
-export interface selectedTime {
-    timeInfo: string;
-    dayInfo: string;
-}
 
 // 중첩 map으로 시간표 작성하는 경우 type - deprecated..
 export interface timeCell {
@@ -66,7 +79,8 @@ export interface timeCell {
 // 베이스 시간표 위에 그려질 일정들 정보 type
 export interface Event {
     id: string; // 각 일정을 구분할 고유 ID (uuid, nanoid 등 사용)
-    day: 'MON' | 'TUE' | 'WED' | 'THU' | 'FRI' | 'SAT' | 'SUN'; // 요일
+    // day: 'MON' | 'TUE' | 'WED' | 'THU' | 'FRI' | 'SAT' | 'SUN'; // 요일
+    day: dayString;
     startTime: string; // "0900"
     endTime: string; // "1100" (30분 단위가 아닌, 끝나는 시간)
     eventName: string;
