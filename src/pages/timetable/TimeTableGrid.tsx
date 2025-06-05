@@ -1,49 +1,6 @@
-
-// [
-//     {
-//         "day": "MON / TUE / WED / THU / FRI / SAT / SUN",
-//         "startTime": "11:00:00.000000",
-//         "endTime": "11:00:00.000000",
-//         "eventName": "분산시스템과컴퓨팅",
-//         "eventDetail": "신공1201",
-//         "color": "#f6f6f6"
-//     }
-// ] 
-
 import { useState } from "react";
-import { useAddTimeTableStore, useSelectCellStore } from "../../store/store";
+import { useAddTimeTableStore, useSelectCellStore, useLoadTableStore } from "../../store/store";
 import type { Event } from "../../types/types";
-
-// --- Mock 데이터 (실제로는 Zustand 스토어에서 가져옵니다) ---
-const mockEvents: Event[] = [
-    {
-        id: 'event-1',
-        day: 'TUE',
-        startTime: '0900',
-        endTime: '1030',
-        eventName: '주간 회의',
-        eventDetail: '팀 전체 주간 목표 공유',
-        color: '#D1E7DD', // 연한 녹색
-    },
-    {
-        id: 'event-2',
-        day: 'WED',
-        startTime: '1400',
-        endTime: '1600',
-        eventName: '디자인 리뷰',
-        eventDetail: '새로운 기능 UI/UX 검토fefaafaefaefefe',
-        color: '#CFE2FF', // 연한 파랑
-    },
-    {
-        id: 'event-3',
-        day: 'FRI',
-        startTime: '1100',
-        endTime: '1230',
-        eventName: '개인 프로젝트',
-        eventDetail: '',
-        color: '#FFF3CD', // 연한 노랑
-    },
-];
 
 // --- 헬퍼 상수 및 함수 ---
 const TIME_SLOTS = Array.from({ length: 31 }, (_, i) => { // 09:00 ~ 22:30 까지 30분 단위 슬롯
@@ -74,11 +31,10 @@ const formatHour = (time: string) => `${parseInt(time.substring(0, 2), 10)}시`;
 
 
 const TimeTableGrid = () => {
-    const [events, setEvents] = useState<Event[]>(mockEvents);
     const [selectedEventId, setSelectedEventId] = useState<string | null>(null);
     const { isEditing } = useAddTimeTableStore();
     const { selectedCell, setSelectedCell } = useSelectCellStore();
-
+    const { loadTable } = useLoadTableStore();
     const checkIsSelect = (halfHour: string, day: string) => {
         return selectedCell.some(
             (c) => c.timeInfo === halfHour
@@ -192,15 +148,12 @@ const TimeTableGrid = () => {
             })}
 
             {/* --- 3. 이벤트 블록 렌더링 --- */}
-            {events.map((event) => {
+            {loadTable.map((event) => {
+                // {events.map((event) => {
                 const gridRowStart = timeToGridRow(event.startTime);
                 const gridRowEnd = timeToGridRow(event.endTime);
-                // 🌟 변경: 컬럼 계산 시 더 이상 +1 하지 않음
                 const gridColumn = DAY_TO_COL[event.day];
                 const isSelected = selectedEventId === event.id;
-
-                // console.log(`${event.startTime} -> ${gridRowStart}`)
-
                 return (
                     <div
                         key={event.id}
@@ -208,7 +161,6 @@ const TimeTableGrid = () => {
                         // onClick={() => handleEventClick(event.id)}
                         className="w-13 overflow-clip flex flex-col p-2 rounded-lg cursor-pointer transition-all duration-200 ease-in-out text-gray-800"
                         style={{
-                            // 🌟 변경: position:absolute 대신 Grid 속성을 직접 사용
                             gridRow: `${gridRowStart} / ${gridRowEnd}`,
                             gridColumn: gridColumn,
                             backgroundColor: event.color,

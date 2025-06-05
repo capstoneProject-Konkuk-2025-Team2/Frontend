@@ -1,21 +1,12 @@
 import axios from "axios"
-
+import type { Event } from "../types/types";
 const TIMETABLE_API_URL = "/v1/member/timetable"
-
-interface Timetable_Element {
-    day: string;
-    startTime: string;
-    endTime: string;
-    eventName: string;
-    eventDetail: string;
-    color: string;
-}
 
 // 추가할 시간표 정보 보내기 POST
 // 논의 추가 필요. 여러 요일, 여러 시간대 셀을 동시 클릭한 경우?
 // 입력에 제한을 둘 것인지 api를 수정할 것인지.
-export const sendMailRequest = ({ day, startTime, endTime,
-    eventName, eventDetail, color }: Timetable_Element) => axios.post(TIMETABLE_API_URL, {
+export const sendEventRequest = ({ day, startTime, endTime,
+    eventName, eventDetail, color }: Event) => axios.post(TIMETABLE_API_URL, {
         day: day,
         startTime: startTime,
         endTime: endTime,
@@ -36,3 +27,4 @@ export const sendMailRequest = ({ day, startTime, endTime,
 //         "color": "#f6f6f6"
 //     }
 // ] 
+
