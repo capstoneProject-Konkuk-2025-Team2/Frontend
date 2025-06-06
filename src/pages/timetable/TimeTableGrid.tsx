@@ -118,7 +118,7 @@ const TimeTableGrid = () => {
                         key={`${time}-${day}`}
                         onClick={() => {
                             console.log(day)
-                            handleVoidClick(time, time, day as dayString);
+                            handleVoidClick(time, TIME_SLOTS[rowIndex + 1], day as dayString);
                         }}
                         style={{
                             backgroundColor: '#f5f5f5',
