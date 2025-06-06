@@ -11,7 +11,7 @@ const ChatBotFrame = () => {
 
                 <div className="absolute top-5 right-5"
                     onClick={openChatBotPage}>
-                    <img src="/public/icons/X-icon.svg" />
+                    <img src="/icons/X-icon.svg" />
                 </div>
 
                 <div className="flex flex-col justify-center items-center">
@@ -45,7 +45,7 @@ const ChatBotFrame = () => {
                             <div className="p-4 flex justify-center items-center">
                                 <button className="w-6 h-6">
                                     <img className="w-6 h-6"
-                                        src="/public/icons/blue-sending-icon.svg" />
+                                        src="/icons/blue-sending-icon.svg" />
                                 </button>
                             </div>
                         </div>
