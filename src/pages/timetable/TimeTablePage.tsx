@@ -1,21 +1,18 @@
 import UpperNav from "../../components/UpperNav.tsx";
+import TimeTableLabel from "./TimeTableLabel.tsx";
+import TimeTableGrid from "./TimeTableGrid.tsx";
+import { useAddTimeTableStore } from "../../store/store.ts";
 
-const TimeTablePage = () =>{
+const TimeTablePage = () => {
+    const { setIsEditing } = useAddTimeTableStore();
     return (
         <div>
-            <UpperNav text="2025년 1학기" otherBtn="None"/>
-
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-                <div className="container-fluid">시간표 요일별 라벨</div>
-                <div className="container-fluid">시간표</div>
-            </nav>
-
-            <div>
-                fixed : 플로팅 시간표 편집 버튼
-            </div>
-
-            <div>
-                fixed : 플로팅 챗봇 버튼
+            <UpperNav text="2025년 1학기" otherBtn="edit-timetable" handleBtn={setIsEditing} />
+            <div className="bg-[#005B3F]">
+                <TimeTableLabel />
+                <div className="h-165 overflow-y-scroll no-scrollbar p-4 box-border">
+                    <TimeTableGrid />
+                </div>
             </div>
         </div>
     )
