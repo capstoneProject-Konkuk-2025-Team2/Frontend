@@ -1,5 +1,5 @@
 
-export interface academicInfo{
+export interface AcademicInfo{
   academicStatus: "ENROLLED" | "LEAVE_OF_ABSENCE" |  "GRADUATED",
   grade: number,
   college: string,

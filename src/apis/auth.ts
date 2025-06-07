@@ -1,5 +1,5 @@
 import axios from "axios"
-import type { academicInfo} from "../types/types"
+import type { AcademicInfo} from "../types/types"
 const AUTH_MAIL_API_URL = "/v1/member/auth-mail"
 const AUTH_CODE_API_URL = "/v1/member/auth-code"
 const PW_API_URL = "/v1/member/password"
@@ -69,7 +69,7 @@ export const enrollInterest = (interests: string[]) => axios.post(PW_API_URL, {
     );
 
 // 학적 정보 + 챗봇이 부를 이름 입력받기 POST - result true 받음
-export const enrollAcademicInfo = (academicInfo: academicInfo) => axios.post(PW_API_URL, {
+export const enrollAcademicInfo = (academicInfo: AcademicInfo) => axios.post(PW_API_URL, {
     academicStatus: academicInfo.academicStatus,
     grade: academicInfo.grade,
     college: academicInfo.college,
