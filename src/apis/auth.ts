@@ -41,6 +41,8 @@ export const verifyAuthCode = (mailAddress: string, code: string) => axios.post(
 // 비밀번호 설정하기 POST - 메인 서비스 이용 토큰 응답받음.
 export const enrollPW = (password: string) => axios.post(PW_API_URL, {
     password: password
+}, {
+    // headers: {Authorization: token,}
 })
     .then(Response => {
         console.log(Response.data)
