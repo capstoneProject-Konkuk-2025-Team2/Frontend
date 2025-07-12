@@ -1,17 +1,17 @@
 type BotSpeechBubbleProps = {
-    text : string;
+    text: string;
 }
 
-const BotSpeechBubble = ({text}:BotSpeechBubbleProps) =>{
+const BotSpeechBubble = ({ text }: BotSpeechBubbleProps) => {
 
-    return(
+    return (
+        <div className="flex flex-col w-full justify-start">
+            <div className="w-[90%] h-full bg-[#FCFFFF] rounded-tr-[50px] rounded-br-[50px] p-3">
                 <div>
-                    <div className="w-93 h-44 bg-[#FCFFFF] rounded-tr-[50px] rounded-br-[50px] p-3">
-                        <div>
-                            {text}
-                        </div>
-                    </div>
+                    {text}
                 </div>
+            </div>
+        </div>
     )
 }
 
