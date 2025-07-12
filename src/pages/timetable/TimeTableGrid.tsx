@@ -99,14 +99,13 @@ const TimeTableGrid = () => {
 
     return (
         <div
-            className="grid" // 🌟 변경: position: relative 제거, 더 깔끔한 그리드 로직
+            className="grid" 
             style={{
-                // 🌟 변경: 시간 라벨 컬럼이 없어졌으므로 7개의 컬럼만 정의
-                gridTemplateColumns: 'repeat(7, 1fr)',
+                gridTemplateColumns: 'repeat(7, minmax(0, 1fr))',
                 // 30분 단위로 28개의 행을 생성
                 gridTemplateRows: `repeat(${TIME_SLOTS.length}, 50px)`,
                 // 그리드 라인 사이에 미세한 간격 추가
-                gap: '0.7px',
+                gap: '1.5px',
                 backgroundColor: '#D7D7D9', // 간격 색상
             }}
         >
@@ -163,7 +162,7 @@ const TimeTableGrid = () => {
                         key={event.id}
                         onClick={() => handleEventClick(event)}
                         // onClick={() => handleEventClick(event.id)}
-                        className="w-13 overflow-clip flex flex-col p-2 rounded-lg cursor-pointer transition-all duration-200 ease-in-out text-gray-800"
+                        className="w-full overflow-clip flex flex-col p-2 rounded-lg cursor-pointer transition-all duration-200 ease-in-out text-gray-800"
                         style={{
                             gridRow: `${gridRowStart} / ${gridRowEnd}`,
                             gridColumn: gridColumn,
