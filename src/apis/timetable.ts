@@ -1,21 +1,35 @@
-import axios from "axios"
-import type { Event } from "../types/types";
-const TIMETABLE_API_URL = "/v1/member/timetable"
+import api from "@/apis/index"
+// import { useLoadTableStore } from "../store/store";
+import type { ChangeTimetableRequest, MakeMemberTimetableRequest } from "@/generated-api/Api";
+
+export const getTimeTable = ()=> api.lookupTimetable()
+    .then((res) => {
+        console.log("시간표 조회 api", res);
+        return res.data.result;
+    })
+    .catch((err) => console.error(err));
+
 
 // 추가할 시간표 정보 보내기 POST
 // 논의 추가 필요. 여러 요일, 여러 시간대 셀을 동시 클릭한 경우?
 // 입력에 제한을 둘 것인지 api를 수정할 것인지.
-export const sendEventRequest = ({ day, startTime, endTime,
-    eventName, eventDetail, color }: Event) => axios.post(TIMETABLE_API_URL, {
-        day: day,
-        startTime: startTime,
-        endTime: endTime,
-        eventName: eventName,
-        eventDetail: eventDetail,
-        color: color,
+export const sendEventRequest = (events:  MakeMemberTimetableRequest[]) => api.makeTimetable(events)
+    .then(response => console.log("sendEventRequest 성공", response.data))
+    .catch(error => console.error(error));
+
+
+export const patchEvent = (ChangedEvent:ChangeTimetableRequest) => api.changeTimetable(ChangedEvent).then((res) => {
+        console.log("시간표 내 이벤트 변경 api", res);
+        return res.data.result; //boolean 값
     })
-        .then(Response => console.log(Response.data))
-        .catch(error => console.error(error));
+
+
+export const deleteEvent = (deleteTimetableId: number) => api.deleteTimetable({deleteTimetableId}).then((res) => {
+// export const deleteEvent = (EventId:DeleteTimetableRequest) => api.deleteTimetable(EventId).then((res) => {
+        console.log("시간표 내 스케쥴 삭제 api", res);
+        return res.data.result; //boolean 값
+    })
+    .catch((err) => console.error(err));
 
 // [
 //     {
@@ -28,3 +42,7 @@ export const sendEventRequest = ({ day, startTime, endTime,
 //     }
 // ] 
 
+// export const sendDummyEventRequest = (event: Event) => {
+//     const { addNewLoadTable } = useLoadTableStore.getState()
+//     addNewLoadTable(event)
+// }

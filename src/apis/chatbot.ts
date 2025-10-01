@@ -1,59 +1,24 @@
-import axios from "axios"
-const CHATBOT_API_URL = "/v1/chat/"
+import api from "@/apis/index"
 
-export const sendQuestionDummy = (question: string) => {
-    console.log(question)
-    const result = {
-        answer: "OO님의 관심사는 ~~이며, 다음의 비교과를 추천합니다.",
-        recommendedProgramList : [
-        {
-          title: "string",
-          url: "string",
-          applicationPeriod: "string",
-          targetAudience: "string",
-          selectionMethod: "string",
-          duration: "string",
-          purposeOfTheActivity: "string",
-          participationBenefitsAndExpectedOutcomes: "string",
-          process: "string",
-          modeOfOperation: "string"
-        }
-        ]
-  }
-  return result
+export const sendUserQuestion = async (question: string) => {
+    try {
+        const response = await api.questionToChatServer({ question })
+        return response.data.result;
+    }
+    catch(error){
+        console.error("챗봇 api 요청 실패 : error ", error);
+        throw new Error("챗봇 대화 전송 진행 중 오류 발생"); 
+    }
 }
 
-
-export const sendQuestion = (question: string) => axios.post(CHATBOT_API_URL, {
-        question : question,
-    })
-        .then(Response => {
-            console.log(Response.data)
-            return Response.data.result
-        })
-        .catch(error => {
-            console.error(error)
-            return error
-        });
-
-
-
-// {
-//   "result": {
-//     "answer": "OO님의 관심사는 ~~이며, 다음의 비교과를 추천합니다.",
-//     "recommendedProgramList": [
-//       {
-//         "title": "string",
-//         "url": "string",
-//         "applicationPeriod": "string",
-//         "targetAudience": "string",
-//         "selectionMethod": "string",
-//         "duration": "string",
-//         "purposeOfTheActivity": "string",
-//         "participationBenefitsAndExpectedOutcomes": "string",
-//         "process": "string",
-//         "modeOfOperation": "string"
-//       }
-//     ]
-//   }
-// }
+export const registerUserToChatbot = async () => {
+    try {
+        const response = await api.registerMemberInfo()
+        console.log("챗봇에 사용자 등록 진행", response)
+        return response.data.result;
+    }
+    catch(error){
+        console.error("챗봇에 사용자 등록 실패 : error ", error);
+        throw new Error("챗봇에 사용자 등록 진행 중 오류 발생"); 
+    }
+}
